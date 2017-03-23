@@ -1,0 +1,44 @@
+.button {
+	width: 250px;
+        border-radius:6px;
+        border:1px solid #852b85;
+        display:inline-block;
+        color:black;
+        font-family:arial;
+        font-size:15px;
+        font-weight:bold;
+        padding:5px 24px;
+        text-decoration:none;
+        text-shadow:1px 1px 0px #f7e4f7;
+        margin: 2px;
+}
+.button:hover {
+	width: 250px;
+        background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ede6ed), color-stop(1, #256bc7) );
+        background:-moz-linear-gradient( center top, #ede6ed 5%, #256bc7 100% );
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ede6ed', endColorstr='#256bc7');
+        background-color:#ede6ed;
+        }
+.button:active {
+	width: 250px;
+        position:relative;
+        top:1px;
+}
+
+#konten{
+  position:relative;
+	background-color:gray;
+	width:20%;
+	height:50%;
+	z-index:10;
+	color:black;
+	float:right;
+  top:0;
+}
+#mapDiv{
+	width: 100%;
+  	height:100%;
+  	position: absolute;
+  	top:0;
+  	left: 0;
+}
