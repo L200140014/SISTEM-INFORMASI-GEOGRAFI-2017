@@ -1,0 +1,82 @@
+<!-- Program Google Maps Puji Andrianto --> 
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- Kode untuk memanggil API Gooogle map menggunakan API key -->
+    <script type="text/javascript"
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnDTRzffKOCd3ixz8L4EjtvSzQxKJFYWY">
+    </script> 
+    <title>Tugas 2 Sistem Informasi Geografi</title>
+    <link rel="stylesheet" href="peta.css">
+    <script type="text/javascript">
+              var map,lat,lng; //Mendefinisikan map,lat, dan lng sebagai variabel global agar dapat di akses oleh fungsi lain
+              //Membuat fungsi yang akan dipanggil saat halaman di load
+              function initMap () {
+                    google.maps.visualRefresh = true;
+                    lat = -6.218806, lng = 106.841177; // Mendefinisikan titik koordinat
+                    var myLatLng = new google.maps.LatLng(lat, lng); // Membuat variabel koordinat peta secara statik
+                    //Melakukan pengaturan pada opsi peta
+                    var mapOptions = {
+                        
+                          center: myLatLng, //lokasi pusat koordinal awal yang akan di tampilkan di tengah layar
+                          zoom: 2, // levl zoom peta
+                          mapTypeId: google.maps.MapTypeId.ROADMAP,
+                          disableDefaultUI: true  // Menghilangkan pengubah type map default
+                    };         
+                    var mapElement = document.getElementById('mapDiv');  // variabel utk mengontrol elemen div yaitu mapDiv
+                     // proses membuat peta dan meletakannya pada elemen div
+                    map = new google.maps.Map(mapElement, mapOptions); 
+                    if (navigator.geolocation) {
+                        //membaca posisi/lokasi client (browser) saat ini
+                        navigator.geolocation.getCurrentPosition(
+                        // position adalah data lokasi hasil pembacaan 
+                        // berupa lokasi dalam json
+                        function(position) {
+                            lat = position.coords.latitude;
+                            lng = position.coords.longitude;
+                         // devCenter adalah data lokasi dengan format 
+                         // google.maps
+                         var devCenter =  new google.maps.LatLng(lat, lng); // mengatur lokasi PUSAT peta (map) 
+                         map.setCenter(devCenter);
+                        map.setZoom(18); 
+                       });
+
+ 
+                    }
+                    startButtonEvents();
+                }
+                 //Function that start listening the click events of the buttons.
+              function startButtonEvents () {
+                    document.getElementById('btnRoad').addEventListener('click', function(){
+                        map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+                        });
+                    document.getElementById('btnSat').addEventListener('click', function(){
+                        map.setMapTypeId(google.maps.MapTypeId.SATELLITE);
+                       });
+                    document.getElementById('btnHyb').addEventListener('click', function(){
+                        map.setMapTypeId(google.maps.MapTypeId.HYBRID);
+                       });
+                  document.getElementById('btnTer').addEventListener('click', function(){
+                      map.setMapTypeId(google.maps.MapTypeId.TERRAIN);
+                     });
+              }
+            google.maps.event.addDomListener(window, 'load', initMap);
+
+    </script>
+</head>
+<body>
+    <div id="konten">
+	    <center>
+	    	<h3>Tugas II Membuat Peta & Event<br> Sistem Informasi Geografis</h3> 
+            	<b>Merubah Tipe Peta</b><br/>
+	    	<input id="btnSat" type="button" class="button" value="Satellite"><br>
+            	<input id="btnRoad" type="button" class="button" value="RoadMap"><br>
+            	<input id="btnHyb" type="button" class="button" value="Hybrid"><br>
+            	<input id="btnTer" type="button" class="button" value="Terrain"><br><br>
+	    </center>     
+    </div>
+    <div id="mapDiv">
+    </div>
+</body>
+</html>
